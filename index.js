@@ -1,34 +1,26 @@
 const ENABLE_SERIAL = false;
 const SERIAL_PORT = "COM3"
 
-const express = require('express');
-const app = express();
+const webapp = require('express')();
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!')
+webapp.listen(3000, function () {
+  console.log('Example app listening on port 3000!');
 });
 
 const jsonfile = require("jsonfile");
-var rezepte = jsonfile.readFileSync("rezepte.json");
-var zutaten = jsonfile.readFileSync("zutaten.json");
+const rezepte = jsonfile.readFileSync("rezepte.json");
+const zutaten = jsonfile.readFileSync("zutaten.json");
 
-app.get('/rezept/:rezeptId', function (req, res) {
-  const rezeptId = parseInt(req.params["rezeptId"]);
-  const selectedRezept = rezepte[rezeptId];
+webapp.get('/', function (req, res) {
+  res.sendFile(__dirname + "/index.html");
+});
 
-  function getMLforRezept(rezept, sv) {
-    for (zutatName in rezept.zutaten) {
-      var zutat = zutaten[zutatName];
-      if (zutat.ventil === sv) {
-        return rezept.zutaten[zutatName] / zutat.mlPerSecond * 1000;
-      }
-    }
-    return 0;
-  }
+webapp.get('/prime/:svName', function (req, res) {
+  const primeSvName = req.params["svName"];
 
-  var command = ">";
-  for (var i = 1; i <= 16; i++) {
-    var svName = "sv"
+  let command = ">";
+  for (let i = 1; i <= 16; i++) {
+    let svName = "sv"
     if (i < 10) {
       svName += "0";
     }
@@ -36,17 +28,58 @@ app.get('/rezept/:rezeptId', function (req, res) {
 
     command += svName;
     command += "=";
-    command += getMLforRezept(selectedRezept, svName);
+    command += svName === primeSvName ? "10000" : "0";
     if (i < 16) {
       command += ";"
     }
   }
   command += "<";
   res.send(command);
+});
+
+webapp.get('/rezept/:rezeptId', function (req, res) {
+  function getMLforRezept(rezept, sv) {
+    for (zutatName in rezept.zutaten) {
+      let zutat = zutaten[zutatName];
+      if (zutat.ventil === sv) {
+        return rezept.zutaten[zutatName] / zutat.mlPerSecond * 1000;
+      }
+    }
+    return 0;
+  }
+  function buildCommand(selectedRezept) {
+    let command = ">";
+    for (let i = 1; i <= 16; i++) {
+      let svName = "sv"
+      if (i < 10) {
+        svName += "0";
+      }
+      svName += i;
+
+      command += svName;
+      command += "=";
+      command += getMLforRezept(selectedRezept, svName);
+      if (i < 16) {
+        command += ";"
+      }
+    }
+    command += "<";
+    return command;
+  }
+  const rezeptId = parseInt(req.params["rezeptId"]);
+  const selectedRezept = rezepte[rezeptId];
+
+  if (selectedRezept === undefined) {
+    res.sendStatus(404);
+    return;
+  }
+
+  let command = buildCommand(selectedRezept);
+  res.send(command);
   if (ENABLE_SERIAL) {
     port.write(command);
   }
-})
+});
 
 if (ENABLE_SERIAL) {
 
