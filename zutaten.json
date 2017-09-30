@@ -1,0 +1,17 @@
+{
+	"COLA": {
+		"name": "Coca Cola",
+		"ventil": "sv01",
+		"mlPerSecond": 35
+	},
+	"RUM": {
+		"name": "Havanna",
+		"ventil": "sv02",
+		"mlPerSecond": 20
+	},
+	"ZITRONE": {
+		"name": "Zitronensaft",
+		"ventil": "sv03",
+		"mlPerSecond": 10
+	}
+}

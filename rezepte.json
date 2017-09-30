@@ -1,0 +1,12 @@
+[
+	{
+		"name": "Cuba Libre",
+		"description": "Viva la revolución",
+		"img": "img/cubalibre.png",
+		"zutaten": {
+			"COLA": 350,
+			"RUM": 40,
+			"ZITRONE": 10
+		}
+	}
+]
