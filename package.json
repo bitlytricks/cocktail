@@ -1,0 +1,16 @@
+{
+  "name": "cocktailmanager",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "matthias.gradl@googlemail.com",
+  "license": "ISC",
+  "dependencies": {
+    "express": "4.15.4",
+    "serialport": "5.0.0"
+  }
+}
