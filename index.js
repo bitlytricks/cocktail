@@ -15,6 +15,10 @@ webapp.get('/', function (req, res) {
   res.sendFile(__dirname + "/index.html");
 });
 
+webapp.get('/service', function (req, res) {
+  res.sendFile(__dirname + "/service.html");
+});
+
 webapp.get('/prime/:svName', function (req, res) {
   const primeSvName = req.params["svName"];
 
@@ -28,7 +32,7 @@ webapp.get('/prime/:svName', function (req, res) {
 
     command += svName;
     command += "=";
-    command += svName === primeSvName ? "10000" : "0";
+    command += svName === primeSvName ? "5000" : "0000";
     if (i < 16) {
       command += ";"
     }
@@ -41,8 +45,8 @@ webapp.get('/rezept/:rezeptId', function (req, res) {
   function getMLforRezept(rezept, sv) {
     for (zutatName in rezept.zutaten) {
       let zutat = zutaten[zutatName];
-      if (zutat.ventil === sv) {
-        return rezept.zutaten[zutatName] / zutat.mlPerSecond * 1000;
+      if (zutat.ventil instanceof Array && zutat.ventil.find(function(v){return v === sv}) || zutat.ventil === sv) {
+        return Math.floor(rezept.zutaten[zutatName] / zutat.mlPerSecond * 1000);
       }
     }
     return 0;
@@ -58,7 +62,7 @@ webapp.get('/rezept/:rezeptId', function (req, res) {
 
       command += svName;
       command += "=";
-      command += getMLforRezept(selectedRezept, svName);
+      command += ("0000" + Math.min(9999,getMLforRezept(selectedRezept, svName))).slice(-4) ;
       if (i < 16) {
         command += ";"
       }

@@ -1,12 +1,18 @@
 [
 	{
 		"name": "Cuba Libre",
-		"description": "Viva la revolución",
-		"img": "img/cubalibre.png",
 		"zutaten": {
 			"COLA": 350,
 			"RUM": 40,
-			"ZITRONE": 10
+			"ZITRONE": 6
+		}
+	},
+	{
+		"name": "Balance",
+		"zutaten": {
+			"WODKA": 350,
+			"RUM": 40,
+			"TRIPLESEC": 6
 		}
 	}
 ]
