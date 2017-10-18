@@ -1,27 +1,50 @@
 <html>
 
 <body>
-	<ul>
-		<li>
-			<a href="/prime/sv01">SV01</a>
-		</li>
-		<li>
-			<a href="/prime/sv02">SV02</a>
-		</li>
-		<li>
-			<a href="/prime/sv03">SV03</a>
-		</li>
-		<li>
-			<a href="/prime/sv04">SV04</a>
-		</li>
-		<li>
-			<a href="/prime/sv05">SV05</a>
-		</li>
-		<li>
-			<a href="/prime/sv06">SV06</a>
-		</li>
-	</ul>
+	<script>
+		function openSV() {
+			var svNames = Array.prototype.map.call(sv.selectedOptions, (a) => a.value).join(",");
+			var time = duration.value;
 
+			var request = new XMLHttpRequest();
+			request.open("GET", "/open/" + svNames + "/" + time);
+			request.send();
+		}
+	</script>
+	<input type="button" value="Öffne" onclick="openSV()"/>
+	<select multiple="true" size="16" id="sv">
+		<option>sv01</option>
+		<option>sv02</option>
+		<option>sv03</option>
+		<option>sv04</option>
+		<option>sv05</option>
+		<option>sv06</option>
+		<option>sv07</option>
+		<option>sv08</option>
+		<option>sv09</option>
+		<option>sv10</option>
+		<option>sv11</option>
+		<option>sv12</option>
+		<option>sv13</option>
+		<option>sv14</option>
+		<option>sv15</option>
+		<option>sv16</option>
+	</select>
+	 für
+	<select size="1" id="duration">
+		<option>1000</option>
+		<option>2000</option>
+		<option>3000</option>
+		<option>4000</option>
+		<option>5000</option>
+		<option>6000</option>
+		<option>7000</option>
+		<option>8000</option>
+		<option>9000</option>
+		<option>9999</option>
+	</select>
+
+	Sekunden.
 </body>
 
 </html>

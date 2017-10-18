@@ -19,8 +19,9 @@ webapp.get('/service', function (req, res) {
   res.sendFile(__dirname + "/pages/service.html");
 });
 
-webapp.get('/prime/:svName', function (req, res) {
-  const primeSvName = req.params["svName"];
+webapp.get('/open/:svName/:duration', function (req, res) {
+  const svNames = req.params["svName"].split(",");
+  const duration = req.params["duration"];
 
   let command = ">";
   for (let i = 1; i <= 16; i++) {
@@ -32,12 +33,23 @@ webapp.get('/prime/:svName', function (req, res) {
 
     command += svName;
     command += "=";
-    command += svName === primeSvName ? "5000" : "0000";
+    if (svNames.find((name) => (name === svName))) {
+      command += ("0000" + duration).slice(-4);
+    }
+    else {
+      command += "0000";
+    }
     if (i < 16) {
       command += ";"
     }
   }
   command += "<";
+  if (CONFIG.serial.enabled) {
+    port.write(command);
+  }
+  else {
+    console.log(command);
+  }
   res.send(command);
 });
 
@@ -80,8 +92,11 @@ webapp.get('/rezept/:rezeptId', function (req, res) {
 
   let command = buildCommand(selectedRezept);
   res.send(command);
-  if (ENABLE_SERIAL) {
+  if (CONFIG.serial.enabled) {
     port.write(command);
+  }
+  else {
+    console.log(command);
   }
 });
 
