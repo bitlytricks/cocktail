@@ -10,6 +10,13 @@
 			request.open("GET", "/open/" + svNames + "/" + time);
 			request.send();
 		}
+
+		function calc() {
+			var volume = parseInt(vol.value);
+			var time = parseInt(duration.value);
+
+			mlPerSec.value = Math.floor(volume/time * 1000);
+		}
 	</script>
 	<input type="button" value="Öffne" onclick="openSV()"/>
 	<select multiple="true" size="16" id="sv">
@@ -45,6 +52,9 @@
 	</select>
 
 	Sekunden.
+	<br/>
+	<br/>
+	Kalibrationswert ml: <input type="text" id="vol" oninput="calc()"/>, ml/sec=<input type="text readonly="true" id="mlPerSec"/>
 </body>
 
 </html>
