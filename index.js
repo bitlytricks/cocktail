@@ -1,5 +1,8 @@
-const ENABLE_SERIAL = false;
-const SERIAL_PORT = "COM3"
+const jsonfile = require("jsonfile");
+
+const CONFIG = jsonfile.readFileSync("config.json");
+const rezepte = jsonfile.readFileSync("data/rezepte.json");
+const zutaten = jsonfile.readFileSync("data/zutaten.json");
 
 const webapp = require('express')();
 
@@ -7,9 +10,6 @@ webapp.listen(3000, function () {
   console.log('Example app listening on port 3000!');
 });
 
-const jsonfile = require("jsonfile");
-const rezepte = jsonfile.readFileSync("data/rezepte.json");
-const zutaten = jsonfile.readFileSync("data/zutaten.json");
 
 webapp.get('/', function (req, res) {
   res.sendFile(__dirname + "/pages/index.html");
@@ -85,11 +85,11 @@ webapp.get('/rezept/:rezeptId', function (req, res) {
   }
 });
 
-if (ENABLE_SERIAL) {
+if (CONFIG.serial.enabled) {
 
   const SerialPort = require('serialport');
   const Ready = SerialPort.parsers.Ready;
-  const port = new SerialPort(SERIAL_PORT, { baudRate: 19200 });
+  const port = new SerialPort(CONFIG.serial.port, { baudRate: 19200 });
   const parser = port.pipe(new Ready({ delimiter: 'ready' }));
 
   parser.on('ready', () => {

@@ -1,0 +1,6 @@
+{
+    "serial" : {
+        "enabled" : false,
+        "port" : "COM3"
+    }
+}
