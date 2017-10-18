@@ -8,15 +8,15 @@ webapp.listen(3000, function () {
 });
 
 const jsonfile = require("jsonfile");
-const rezepte = jsonfile.readFileSync("rezepte.json");
-const zutaten = jsonfile.readFileSync("zutaten.json");
+const rezepte = jsonfile.readFileSync("data/rezepte.json");
+const zutaten = jsonfile.readFileSync("data/zutaten.json");
 
 webapp.get('/', function (req, res) {
-  res.sendFile(__dirname + "/index.html");
+  res.sendFile(__dirname + "/pages/index.html");
 });
 
 webapp.get('/service', function (req, res) {
-  res.sendFile(__dirname + "/service.html");
+  res.sendFile(__dirname + "/pages/service.html");
 });
 
 webapp.get('/prime/:svName', function (req, res) {

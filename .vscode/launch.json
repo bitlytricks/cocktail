@@ -7,7 +7,13 @@
 		{
 			"type": "node",
 			"request": "launch",
-			"name": "Launch Program",
+			"name": "Launch (MacOS)",
+			"program": "${workspaceRoot}/index.js"
+		},
+		{
+			"type": "node",
+			"request": "launch",
+			"name": "Launch(Win)",
 			"program": "${workspaceRoot}\\index.js"
 		}
 	]
