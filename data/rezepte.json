@@ -32,11 +32,11 @@
 	{
 		"name": "Coast Guard",
 		"zutaten": {
-			"RUM":20,
-			"GIN":20,
+			"WODKA":40,
 			"TRIPLESEC":20,
 			"ZITRONE":20,
-			"GRENADINE":10
+			"ORANGE":40,
+			"MARACUJA":20
 		},
 		"oneServing": 200
 	},
@@ -49,7 +49,7 @@
 			"TEQUILA":20,
 			"ZITRONE":20
 		},
-		"oneServing": 200
+		"oneServing": 100
 	},
 	{
 		"name": "Lucky Driver",
