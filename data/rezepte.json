@@ -1,18 +1,72 @@
 [
 	{
-		"name": "Cuba Libre",
-		"zutaten": {
-			"COLA": 350,
-			"RUM": 40,
-			"ZITRONE": 6
-		}
-	},
-	{
 		"name": "Balance",
 		"zutaten": {
-			"WODKA": 350,
-			"RUM": 40,
-			"TRIPLESEC": 6
-		}
+			"WODKA": 20,
+			"RUM": 10,
+			"TRIPLESEC": 10,
+			"GRENADINE": 5
+		},
+		"oneServing": 200
+	},
+	{
+		"name": "Barracuda Bite",
+		"zutaten": {
+			"WODKA": 40,
+			"GRENADINE": 20,
+			"ZITRONE": 10
+		},
+		"oneServing": 200
+	},
+	{
+		"name": "Blinding Sunrise",
+		"zutaten": {
+			"TEQUILA": 20,
+			"WODKA": 20,
+			"ORANGE": 60,
+			"TRIPLESEC": 5,
+			"GRENADINE": 20
+		},
+		"oneServing": 200
+	},
+	{
+		"name": "Coast Guard",
+		"zutaten": {
+			"RUM":20,
+			"GIN":20,
+			"TRIPLESEC":20,
+			"ZITRONE":20,
+			"GRENADINE":10
+		},
+		"oneServing": 200
+	},
+	{
+		"name": "Long Island Iced Tea",
+		"zutaten": {
+			"GIN": 20,
+			"WODKA":20,
+			"RUM":20,
+			"TEQUILA":20,
+			"ZITRONE":20
+		},
+		"oneServing": 200
+	},
+	{
+		"name": "Lucky Driver",
+		"zutaten": {
+			"ORANGE":80,
+			"MARACUJA":40,
+			"ZITRONE":20,
+			"GRENADINE":20
+		},
+		"oneServing": 200
+	},
+	{
+		"name": "Sunset",
+		"zutaten": {
+			"ORANGE":100,
+			"GRENADINE":30
+		},
+		"oneServing": 200
 	}
 ]

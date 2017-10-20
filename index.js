@@ -2,6 +2,13 @@ const jsonfile = require("jsonfile");
 
 const CONFIG = jsonfile.readFileSync("config.json");
 const rezepte = jsonfile.readFileSync("data/rezepte.json");
+rezepte.forEach(rezept => {
+  var sum = 0;
+  for (zutat in rezept.zutaten) {
+    sum += rezept.zutaten[zutat];
+  }
+  rezept.factor = rezept.oneServing / sum;
+})
 const zutaten = jsonfile.readFileSync("data/zutaten.json");
 
 const webapp = require('express')();
@@ -74,7 +81,7 @@ webapp.get('/rezept/:rezeptId', function (req, res) {
     for (zutatName in rezept.zutaten) {
       let zutat = zutaten[zutatName];
       if (zutat.ventil instanceof Array && zutat.ventil.find(function(v){return v === sv}) || zutat.ventil === sv) {
-        return Math.floor(rezept.zutaten[zutatName] / zutat.mlPerSecond * 1000);
+        return Math.floor(rezept.zutaten[zutatName] / zutat.mlPerSecond * 1000 * rezept.factor);
       }
     }
     return 0;
@@ -104,6 +111,9 @@ webapp.get('/rezept/:rezeptId', function (req, res) {
   if (selectedRezept === undefined) {
     res.sendStatus(404);
     return;
+  }
+  else {
+    console.log(selectedRezept.name);
   }
 
   let command = buildCommand(selectedRezept);

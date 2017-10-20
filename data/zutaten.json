@@ -1,17 +1,38 @@
 {
-	"COLA": {
-		"name": "Coca Cola",
-		"ventil": ["sv01", "sv13"],
-		"mlPerSecond": 38
+	"WODKA": {
+		"ventil": "sv01",
+		"mlPerSecond": 10
 	},
 	"RUM": {
-		"name": "Havanna",
 		"ventil": "sv02",
-		"mlPerSecond": 54
+		"mlPerSecond": 10
+	},
+	"TRIPLESEC": {
+		"ventil": "sv03",
+		"mlPerSecond": 10
+	},
+	"GRENADINE": {
+		"ventil": "sv04",
+		"mlPerSecond": 10
+	},
+	"TEQUILA": {
+		"ventil": "sv05",
+		"mlPerSecond": 10
+	},
+	"GIN": {
+		"ventil": "sv06",
+		"mlPerSecond": 10
+	},
+	"ORANGE": {
+		"ventil": ["sv10", "sv11"],
+		"mlPerSecond": 10
 	},
 	"ZITRONE": {
-		"name": "Zitronensaft",
-		"ventil": "sv03",
-		"mlPerSecond": 43
+		"ventil": ["sv12", "sv13"],
+		"mlPerSecond": 10
+	},
+	"MARACUJA": {
+		"ventil": ["sv14", "sv15"],
+		"mlPerSecond": 10
 	}
 }
