@@ -1,7 +1,8 @@
 <html>
 
 <head>
-	<style>
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<style>
 		body {
 			margin: 0;
 		}
@@ -46,27 +47,27 @@
 		}
 	</style>
 	<script>
-			var currentlyMixing = false;
-			function rezept(num) {
-				if (!currentlyMixing) {
-					currentlyMixing = true;
-					var request = new XMLHttpRequest();
-					request.open("GET", "/rezept/" + num);
-					request.send();
-					document.getElementById("ui").style.display = "none";
-					document.getElementById("ui-mixing").style.display = "block";
-					window.setTimeout(function() {
-						document.getElementById("ui-mixing").style.display = "none";
-						document.getElementById("ui-done").style.display = "block";
-					}, 10000);
-				}
+		var currentlyMixing = false;
+		function rezept(num) {
+			if (!currentlyMixing) {
+				currentlyMixing = true;
+				var request = new XMLHttpRequest();
+				request.open("GET", "/rezept/" + num);
+				request.send();
+				document.getElementById("ui").style.display = "none";
+				document.getElementById("ui-mixing").style.display = "block";
+				window.setTimeout(function () {
+					document.getElementById("ui-mixing").style.display = "none";
+					document.getElementById("ui-done").style.display = "block";
+				}, 10000);
 			}
-			function back() {
-				currentlyMixing = false;
-				document.getElementById("ui-done").style.display = "none";
-				document.getElementById("ui").style.display = "block";
-	}
-		</script>
+		}
+		function back() {
+			currentlyMixing = false;
+			document.getElementById("ui-done").style.display = "none";
+			document.getElementById("ui").style.display = "block";
+		}
+	</script>
 </head>
 
 <body>
@@ -82,9 +83,9 @@
 		<a class="map" style="left: 1567px; top: 763px; width: 223px; height: 205px;" onclick="rezept(6);"></a>
 	</div>
 	<div id="ui-mixing"></div>
-	<div id="ui-done"onclick="back();">
+	<div id="ui-done" onclick="back();">
 	</div>
-			
+
 </body>
 
 </html>
