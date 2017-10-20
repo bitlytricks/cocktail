@@ -1,26 +1,90 @@
 <html>
 
+<head>
+	<style>
+		body {
+			margin: 0;
+		}
+
+		#ui {
+			background: url('/img/UI.jpg');
+			width: 1920px;
+			height: 1080px;
+			display: block;
+			position: relative;
+			margin: 0;
+			float: left;
+		}
+
+		#ui-mixing {
+			background: url('/img/mixing.jpg');
+			width: 1920px;
+			height: 1080px;
+			display: none;
+			position: relative;
+			margin: 0;
+			float: left;
+		}
+
+		#ui-done {
+			background: url('/img/done.jpg');
+			width: 1920px;
+			height: 1080px;
+			display: none;
+			position: relative;
+			margin: 0;
+			float: left;
+		}
+
+		#ui>a.map {
+			position: absolute;
+			display: block;
+		}
+
+		a.map:hover {
+			border: 5px solid white;
+		}
+	</style>
+	<script>
+			var currentlyMixing = false;
+			function rezept(num) {
+				if (!currentlyMixing) {
+					currentlyMixing = true;
+					var request = new XMLHttpRequest();
+					request.open("GET", "/rezept/" + num);
+					request.send();
+					document.getElementById("ui").style.display = "none";
+					document.getElementById("ui-mixing").style.display = "block";
+					window.setTimeout(function() {
+						document.getElementById("ui-mixing").style.display = "none";
+						document.getElementById("ui-done").style.display = "block";
+					}, 10000);
+				}
+			}
+			function back() {
+				currentlyMixing = false;
+				document.getElementById("ui-done").style.display = "none";
+				document.getElementById("ui").style.display = "block";
+	}
+		</script>
+</head>
+
 <body>
-	<ul>
-		<li>
-			<a href="/rezept/0">Cuba Libre</a>
-		</li>
-		<li>
-			<a href="/rezept/1">Arriba</a>
-		</li>
-		<li>
-			<a href="/rezept/2">Cheers</a>
-		</li>
-		<li>
-			<a href="/rezept/3">Allez</a>
-		</li>
-		<li>
-			<a href="/rezept/4">Tranquilo</a>
-		</li>
-		<li>
-			<a href="/rezept/5">Prost</a>
-		</li>
-	</ul>
+
+
+	<div id="ui">
+		<a class="map" style="left:  146px; top: 164px; width: 271px; height: 155px;" onclick="rezept(0);"></a>
+		<a class="map" style="left:  694px; top: 164px; width: 239px; height: 168px;" onclick="rezept(1);"></a>
+		<a class="map" style="left: 1186px; top: 170px; width: 607px; height: 168px;" onclick="rezept(2);"></a>
+		<a class="map" style="left:  126px; top: 808px; width: 309px; height: 159px;" onclick="rezept(3);"></a>
+		<a class="map" style="left:  637px; top: 835px; width: 214px; height: 107px;" onclick="rezept(4);"></a>
+		<a class="map" style="left: 1025px; top: 839px; width: 365px; height:  87px;" onclick="rezept(5);"></a>
+		<a class="map" style="left: 1567px; top: 763px; width: 223px; height: 205px;" onclick="rezept(6);"></a>
+	</div>
+	<div id="ui-mixing"></div>
+	<div id="ui-done"onclick="back();">
+	</div>
+			
 </body>
 
 </html>

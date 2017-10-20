@@ -15,6 +15,22 @@ webapp.get('/', function (req, res) {
   res.sendFile(__dirname + "/pages/index.html");
 });
 
+webapp.get('/img/UI.jpg', function (req, res) {
+  res.sendFile(__dirname + "/pages/img/UI.jpg");
+});
+
+webapp.get('/img/mixing.jpg', function (req, res) {
+  res.sendFile(__dirname + "/pages/img/mixing.jpg");
+});
+
+webapp.get('/img/countdown.gif', function (req, res) {
+  res.sendFile(__dirname + "/pages/img/countdown.gif");
+});
+
+webapp.get('/img/done.jpg', function (req, res) {
+  res.sendFile(__dirname + "/pages/img/done.jpg");
+});
+
 webapp.get('/service', function (req, res) {
   res.sendFile(__dirname + "/pages/service.html");
 });

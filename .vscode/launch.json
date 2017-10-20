@@ -13,7 +13,7 @@
 		{
 			"type": "node",
 			"request": "launch",
-			"name": "Launch(Win)",
+			"name": "Launch (Win)",
 			"program": "${workspaceRoot}\\index.js"
 		}
 	]
